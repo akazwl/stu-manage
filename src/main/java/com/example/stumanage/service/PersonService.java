@@ -4,9 +4,12 @@ import com.example.stumanage.model.Person;
 import com.example.stumanage.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
+@Transactional
 public class PersonService {
 
     @Autowired
@@ -20,6 +23,10 @@ public class PersonService {
         return personRepository.findAll();
     }
 
+    public Person savePerson(Person person){
+        return personRepository.save(person);
+    }
+
     public Person updatePerson(Person person){
         if(person.getId() == null){
             throw new IllegalArgumentException("请提供人员ID");
@@ -31,4 +38,3 @@ public class PersonService {
         personRepository.deleteById(id);
     }
 }
-
