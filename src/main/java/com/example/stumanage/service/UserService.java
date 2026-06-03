@@ -1,18 +1,24 @@
 package com.example.stumanage.service;
 
 import com.example.stumanage.model.User;
+import com.example.stumanage.model.Person;
 import com.example.stumanage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PersonService personService;
 
     public User authenticate(String username, String password, String role) {
         Optional<User> userOptional = userRepository.findByUsername(username);
@@ -34,9 +40,15 @@ public class UserService {
     public User createUser(User user) {
         if (userRepository.existsByUsername(user.getUsername()))
             throw new RuntimeException("用户名已存在: " + user.getUsername());
-        User saved = userRepository.save(user);       // 先保存拿到自增 id
-        saved.setPersonId(saved.getId());             // person_id = id
-        return userRepository.save(saved);             // 更新
+        
+        // 第一步：先创建 Person 记录
+        Person person = new Person();
+        person.setName(user.getUsername());
+        Person savedPerson = personService.savePerson(person);
+        
+        // 第二步：创建 User，关联到刚创建的 Person
+        user.setPersonId(savedPerson.getId());
+        return userRepository.save(user);
     }
 
     public User resetPassword(Integer userId, String newPassword) {
