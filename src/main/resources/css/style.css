@@ -1,0 +1,342 @@
+/* ===== 山东大学软件学院 - 学生管理系统 ===== */
+
+/* 根字体 & 颜色 */
+.root {
+    -fx-font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    -fx-background-color: #f0f2f5;
+}
+
+/* ===== 登录页 ===== */
+.login-bg {
+    -fx-background-color: linear-gradient(to bottom right, #1a3a6b, #2b6cb0);
+}
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0, 0, 4);
+    -fx-padding: 30;
+}
+.login-logo-circle {
+    -fx-background-color: #1a3a6b;
+    -fx-background-radius: 50%;
+    -fx-min-width: 80;
+    -fx-min-height: 80;
+    -fx-max-width: 80;
+    -fx-max-height: 80;
+}
+.login-logo-text {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.login-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a3a6b;
+}
+.login-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #666;
+}
+.login-field {
+    -fx-background-color: #f5f6f8;
+    -fx-background-radius: 8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-padding: 10 14;
+    -fx-font-size: 14px;
+}
+.login-field:focused {
+    -fx-border-color: #2b6cb0;
+    -fx-background-color: white;
+}
+.login-btn {
+    -fx-background-color: #2b6cb0;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 12 0;
+    -fx-cursor: hand;
+}
+.login-btn:hover {
+    -fx-background-color: #1a3a6b;
+}
+.role-btn {
+    -fx-background-color: #f5f6f8;
+    -fx-background-radius: 8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-padding: 8 20;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.role-btn:selected, .role-btn:hover {
+    -fx-background-color: #2b6cb0;
+    -fx-text-fill: white;
+    -fx-border-color: #2b6cb0;
+}
+
+/* ===== 顶部导航栏 ===== */
+.top-bar {
+    -fx-background-color: #1a3a6b;
+    -fx-padding: 14 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 3);
+}
+.top-bar-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.top-bar-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(255,255,255,0.7);
+}
+.top-bar-user {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(255,255,255,0.9);
+}
+.logout-btn {
+    -fx-background-color: rgba(255,255,255,0.15);
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-padding: 6 16;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+.logout-btn:hover {
+    -fx-background-color: rgba(255,255,255,0.25);
+}
+
+/* ===== 侧边栏 ===== */
+.sidebar {
+    -fx-background-color: white;
+    -fx-min-width: 200;
+    -fx-padding: 10 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 2, 0);
+}
+.sidebar-header {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #999;
+    -fx-padding: 16 20 8 20;
+}
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #555;
+    -fx-font-size: 13px;
+    -fx-padding: 10 20;
+    -fx-alignment: CENTER-LEFT;
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 0 3;
+    -fx-border-color: transparent;
+}
+.sidebar-btn:hover {
+    -fx-background-color: #f0f4ff;
+    -fx-text-fill: #2b6cb0;
+}
+.sidebar-btn:selected {
+    -fx-background-color: #e8f0fe;
+    -fx-text-fill: #1a3a6b;
+    -fx-font-weight: bold;
+    -fx-border-color: #2b6cb0;
+}
+
+/* ===== 主内容区 ===== */
+.main-content {
+    -fx-padding: 20;
+    -fx-spacing: 16;
+}
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 0 0 8 0;
+}
+.section-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #999;
+}
+
+/* ===== 模块卡片 ===== */
+.module-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-min-width: 180;
+    -fx-min-height: 120;
+}
+.module-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(43,108,176,0.2), 12, 0, 0, 4);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+.module-card-icon {
+    -fx-font-size: 28px;
+}
+.module-card-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 8 0 4 0;
+}
+.module-card-count {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2b6cb0;
+}
+.module-card-unit {
+    -fx-font-size: 11px;
+    -fx-text-fill: #999;
+}
+
+/* 不同模块的卡片配色 */
+.card-compete    { -fx-border-color: #e74c3c; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+.card-science    { -fx-border-color: #8e44ad; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+.card-intern     { -fx-border-color: #2980b9; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+.card-innovate   { -fx-border-color: #f39c12; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+.card-train      { -fx-border-color: #27ae60; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+.card-social     { -fx-border-color: #16a085; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+.card-activity   { -fx-border-color: #e67e22; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+.card-log        { -fx-border-color: #2c3e50; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+.card-statistics { -fx-border-color: #c0392b; -fx-border-width: 0 0 0 4; -fx-border-radius: 12; }
+
+/* ===== 表格 ===== */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 0;
+}
+.table-view .column-header {
+    -fx-background-color: #f5f6f8;
+    -fx-padding: 10 12;
+}
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #555;
+}
+.table-view .table-cell {
+    -fx-padding: 8 12;
+    -fx-font-size: 12px;
+}
+
+/* ===== 按钮 ===== */
+.btn-primary {
+    -fx-background-color: #2b6cb0;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+.btn-primary:hover { -fx-background-color: #1a3a6b; }
+
+.btn-success {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6;
+    -fx-padding: 6 16;
+    -fx-cursor: hand;
+}
+.btn-success:hover { -fx-background-color: #1e8449; }
+
+.btn-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6;
+    -fx-padding: 6 16;
+    -fx-cursor: hand;
+}
+.btn-danger:hover { -fx-background-color: #c0392b; }
+
+.btn-warning {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6;
+    -fx-padding: 6 16;
+    -fx-cursor: hand;
+}
+.btn-warning:hover { -fx-background-color: #d68910; }
+
+/* ===== 输入框 & 下拉框 ===== */
+.input-field {
+    -fx-background-color: #f5f6f8;
+    -fx-background-radius: 6;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 6;
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+}
+.input-field:focused {
+    -fx-border-color: #2b6cb0;
+    -fx-background-color: white;
+}
+.input-area {
+    -fx-background-color: #f5f6f8;
+    -fx-background-radius: 6;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 6;
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+}
+.input-area:focused {
+    -fx-border-color: #2b6cb0;
+    -fx-background-color: white;
+}
+
+/* ===== 对话框/弹窗 ===== */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+}
+
+/* ===== 状态标签 ===== */
+.status-pending  { -fx-text-fill: #f39c12; -fx-font-weight: bold; }
+.status-approved { -fx-text-fill: #27ae60; -fx-font-weight: bold; }
+.status-rejected { -fx-text-fill: #e74c3c; -fx-font-weight: bold; }
+
+/* ===== 统计数字卡片 ===== */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 16;
+    -fx-min-width: 150;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 6, 0, 0, 2);
+}
+.stat-number {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a3a6b;
+}
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #999;
+}
+
+/* ===== 表单区域 ===== */
+.form-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
+    -fx-spacing: 14;
+}
+.form-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+.form-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #666;
+}

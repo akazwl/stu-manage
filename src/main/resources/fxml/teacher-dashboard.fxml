@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.stumanage.fx.controller.TeacherDashboardController">
+
+    <!-- 顶部导航栏 -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="20">
+            <Label text="🏫 学生综合管理系统" styleClass="top-bar-title"/>
+            <Label text="教师工作台" styleClass="top-bar-subtitle"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userInfoLabel" text="" styleClass="top-bar-user"/>
+            <Button text="退出登录" styleClass="logout-btn" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <!-- 左侧边栏 -->
+    <left>
+        <VBox styleClass="sidebar">
+            <Label text="📋 审批管理" styleClass="sidebar-header"/>
+            <Button text="🏅 荣誉"       styleClass="sidebar-btn" onAction="#showPending" userData="honor"/>
+            <Button text="🏆 学科竞赛"   styleClass="sidebar-btn" onAction="#showPending" userData="competition"/>
+            <Button text="🔬 科技成果"   styleClass="sidebar-btn" onAction="#showPending" userData="science-achievement"/>
+            <Button text="🚪 出入校申请" styleClass="sidebar-btn" onAction="#showPending" userData="access"/>
+            <Button text="🏢 校外实习"   styleClass="sidebar-btn" onAction="#showPending" userData="internship"/>
+            <Button text="💡 创新项目"   styleClass="sidebar-btn" onAction="#showPending" userData="innovation-project"/>
+            <Button text="📚 培训讲座"   styleClass="sidebar-btn" onAction="#showPending" userData="training-lecture"/>
+            <Button text="🌍 社会实践"   styleClass="sidebar-btn" onAction="#showPending" userData="social-practice"/>
+            <Label text="📖 课程管理" styleClass="sidebar-header"/>
+            <Button text="  我的课程"     styleClass="sidebar-btn" onAction="#showMyCourses"/>
+            <Label text="📊 数据" styleClass="sidebar-header"/>
+            <Button text="  系统总览"     styleClass="sidebar-btn" onAction="#showOverview"/>
+        </VBox>
+    </left>
+
+    <!-- 主内容区 -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: #f0f2f5;">
+            <VBox fx:id="contentArea" styleClass="main-content"/>
+        </ScrollPane>
+    </center>
+</BorderPane>

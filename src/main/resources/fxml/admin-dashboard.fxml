@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.stumanage.fx.controller.AdminDashboardController">
+
+    <!-- 顶部导航栏 -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="20">
+            <Label text="🏫 学生综合管理系统" styleClass="top-bar-title"/>
+            <Label text="管理员控制台" styleClass="top-bar-subtitle"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userInfoLabel" text="" styleClass="top-bar-user"/>
+            <Button text="退出登录" styleClass="logout-btn" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <!-- 左侧边栏 -->
+    <left>
+        <VBox styleClass="sidebar">
+            <Label text="⚙️ 系统管理" styleClass="sidebar-header"/>
+            <Button text="👥 用户管理"   styleClass="sidebar-btn" onAction="#showUserManagement"/>
+            <Button text="📊 系统总览"   styleClass="sidebar-btn" onAction="#showOverview"/>
+            <Label text="📋 审批管理" styleClass="sidebar-header"/>
+            <Button text="  待审批列表"   styleClass="sidebar-btn" onAction="#showPendingApprovals"/>
+        </VBox>
+    </left>
+
+    <!-- 主内容区 -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: #f0f2f5;">
+            <VBox fx:id="contentArea" styleClass="main-content"/>
+        </ScrollPane>
+    </center>
+</BorderPane>

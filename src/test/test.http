@@ -1,0 +1,894 @@
+
+
+### 管理员登录
+POST http://localhost:22222/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123456",
+  "role": "ADMIN"
+}
+
+### 学生登录
+POST http://localhost:22222/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "student001",
+  "password": "123456",
+  "role": "STUDENT"
+}
+
+### 教师登录
+POST http://localhost:22222/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "teacher001",
+  "password": "123456",
+  "role": "TEACHER"
+}
+
+### 查找个人信息（把1替换成实际personId）
+GET http://localhost:22222/api/person/1
+
+### 学生端-添加荣誉申请（name/level/awardDate/description是正确字段名）
+POST http://localhost:22222/api/honor/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "name": "国家奖学金",
+  "level": "国家级",
+  "awardDate": "2024-06-01",
+  "description": "学业成绩优秀",
+  "status": "PENDING"
+}
+
+### 学生端-提交出入申请（startTime/endTime/reason是正确字段名）
+POST http://localhost:22222/api/access/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "startTime": "2024-06-10T08:00:00",
+  "endTime": "2024-06-15T18:00:00",
+  "reason": "回家探亲",
+  "status": "PENDING"
+}
+
+### 更新个人信息（Person只有name/gender/phone/email/address/birthday）
+PUT http://localhost:22222/api/person/update
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "张三",
+  "gender": "男",
+  "phone": "13800138000",
+  "email": "zhangsan@example.com",
+  "address": "山东省济南市",
+  "birthday": "2000-01-01"
+}
+
+### 学生端-获取我的荣誉列表（把1替换成实际studentId）
+GET http://localhost:22222/api/honor/my-list
+Content-Type: application/json
+
+1
+
+
+### 学生端-删除荣誉（把1替换成实际honorId）
+DELETE http://localhost:22222/api/honor/delete/1
+
+### 教师端-获取所有待审批荣誉
+GET http://localhost:22222/api/honor/pending-list
+
+### 教师端-审批荣誉（把1替换成实际honorId）
+PUT http://localhost:22222/api/honor/approve/1?status=APPROVED&comment=审核通过
+
+### 学生端-获取我的出入申请列表
+GET http://localhost:22222/api/access/my-list?studentId=1
+
+
+
+### 学生端-修改出入申请（把1替换成实际studentId）
+PUT http://localhost:22222/api/access/update?studentId=1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "reason": "回家探亲（修改）",
+  "leaveDate": "2024-06-11",
+  "returnDate": "2024-06-16"
+}
+
+### 学生端-删除出入申请（把1替换成实际id）
+DELETE http://localhost:22222/api/access/delete/1?studentId=1
+
+### 教师端-获取所有待审批出入申请
+GET http://localhost:22222/api/access/pending-list
+
+### 教师端-审批出入申请（把1替换成实际id）
+PUT http://localhost:22222/api/access/approve/1?status=APPROVED&comment=同意外出
+
+
+### 家庭信息 FamilyInfoController
+### ==========================================
+
+### 学生端-查看自己的家庭信息（把1替换成实际personId）
+GET http://localhost:22222/api/family/my-list?personId=1
+
+### 学生端-新增家庭成员
+POST http://localhost:22222/api/family/add
+Content-Type: application/json
+
+{
+  "person": {"id": 1},
+  "memberName": "张父",
+  "relation": "父",
+  "phone": "13800138001",
+  "workplace": "某公司",
+  "occupation": "工程师"
+}
+
+### 学生端-修改家庭成员（把id替换成实际id）
+PUT http://localhost:22222/api/family/update
+Content-Type: application/json
+
+{
+  "id": 1,
+  "person": {"id": 1},
+  "memberName": "张父（修改）",
+  "relation": "父",
+  "phone": "13900139001",
+  "workplace": "某公司",
+  "occupation": "高级工程师"
+}
+
+### 学生端-删除家庭成员（把1替换成实际id）
+DELETE http://localhost:22222/api/family/delete/1
+
+### 教师端-查看所有学生家庭信息
+GET http://localhost:22222/api/family/all
+
+### 教师端-查看某个学生家庭信息
+GET http://localhost:22222/api/family/list/1
+
+### 教师端-新增家庭成员
+POST http://localhost:22222/api/family/teacher/add
+Content-Type: application/json
+
+{
+  "person": {"id": 1},
+  "memberName": "张母",
+  "relation": "母",
+  "phone": "13800138002",
+  "workplace": "某学校",
+  "occupation": "教师"
+}
+
+### 教师端-修改家庭成员
+PUT http://localhost:22222/api/family/teacher/update
+Content-Type: application/json
+
+{
+  "id": 2,
+  "person": {"id": 1},
+  "memberName": "张母（修改）",
+  "relation": "母",
+  "phone": "13900139002",
+  "workplace": "某学校",
+  "occupation": "高级教师"
+}
+
+### 教师端-删除家庭成员
+DELETE http://localhost:22222/api/family/teacher/delete/1
+
+
+### 学生端-查看自己的入学前信息
+GET http://localhost:22222/api/pre-enrollment/my-info?personId=1
+
+### 学生端-新增入学前信息
+POST http://localhost:22222/api/pre-enrollment/add
+Content-Type: application/json
+
+{
+  "person": {"id": 1},
+  "highSchool": "某高中",
+  "highSchoolProvince": "山东省",
+  "highSchoolCity": "济南市",
+  "graduationYear": "2023",
+  "gaokaoScore": "650",
+  "major": "计算机科学与技术",
+  "admissionType": "统招"
+}
+
+### 学生端-修改入学前信息
+PUT http://localhost:22222/api/pre-enrollment/update
+Content-Type: application/json
+
+{
+  "id": 1,
+  "person": {"id": 1},
+  "highSchool": "某高中（修改）",
+  "highSchoolProvince": "山东省",
+  "highSchoolCity": "青岛市",
+  "graduationYear": "2023",
+  "gaokaoScore": "660",
+  "major": "计算机科学与技术",
+  "admissionType": "统招"
+}
+
+### 学生端-删除入学前信息
+DELETE http://localhost:22222/api/pre-enrollment/delete/1
+
+### 教师端-查看所有学生入学前信息
+GET http://localhost:22222/api/pre-enrollment/all
+
+### 教师端-查看某个学生入学前信息
+GET http://localhost:22222/api/pre-enrollment/list/1
+
+
+### 学生端-查看自己的社会关系
+GET http://localhost:22222/api/social-relation/my-list?personId=1
+
+### 学生端-新增社会关系
+POST http://localhost:22222/api/social-relation/add
+Content-Type: application/json
+
+{
+  "person": {"id": 1},
+  "name": "李老师",
+  "relation": "老师",
+  "phone": "13800138003",
+  "workplace": "某大学",
+  "position": "教授",
+  "remark": "导师"
+}
+
+### 学生端-修改社会关系
+PUT http://localhost:22222/api/social-relation/update
+Content-Type: application/json
+
+{
+  "id": 1,
+  "person": {"id": 1},
+  "name": "李老师（修改）",
+  "relation": "老师",
+  "phone": "13900139003",
+  "workplace": "某大学",
+  "position": "副教授",
+  "remark": "导师"
+}
+
+### 学生端-删除社会关系
+DELETE http://localhost:22222/api/social-relation/delete/1
+
+### 教师端-查看所有学生社会关系
+GET http://localhost:22222/api/social-relation/all
+
+### 教师端-查看某个学生社会关系
+GET http://localhost:22222/api/social-relation/list/1
+
+
+### 学生端-查看所有课程
+GET http://localhost:22222/api/course/all
+
+### 教师端-查看自己创建的课程（把1替换成实际teacherId）
+GET http://localhost:22222/api/course/my-list?teacherId=1
+
+### 教师端-新增课程
+POST http://localhost:22222/api/course/add
+Content-Type: application/json
+
+{
+  "teacher": {"id": 1},
+  "courseName": "Java程序设计",
+  "courseCode": "CS001",
+  "credit": "4",
+  "hours": "64",
+  "classroom": "教学楼301",
+  "courseTime": "周一3-4节",
+  "semester": "2024-2025第一学期",
+  "description": "Java基础编程课程"
+}
+
+### 教师端-修改课程（把id替换成实际id）
+PUT http://localhost:22222/api/course/update
+Content-Type: application/json
+
+{
+  "id": 1,
+  "teacher": {"id": 1},
+  "courseName": "Java程序设计（修改）",
+  "courseCode": "CS001",
+  "credit": "4",
+  "hours": "64",
+  "classroom": "教学楼302",
+  "courseTime": "周二3-4节",
+  "semester": "2024-2025第一学期",
+  "description": "Java基础编程课程"
+}
+
+### 教师端-删除课程
+DELETE http://localhost:22222/api/course/delete/1
+
+### ==========================================
+### 课程资料 CourseMaterialController
+### ==========================================
+
+### 学生端-查看某门课的资料（把1替换成实际courseId）
+GET http://localhost:22222/api/course-material/list/1
+
+### 教师端-查看所有课程资料
+GET http://localhost:22222/api/course-material/all
+
+###11
+POST http://localhost:22222/api/course/add
+Content-Type: application/json
+
+{
+  "teacher": {"id": 1},
+  "courseName": "Java程序设计",
+  "courseCode": "CS001",
+  "credit": "4",
+  "hours": "64",
+  "classroom": "教学楼301",
+  "courseTime": "周一3-4节",
+  "semester": "2024-2025第一学期",
+  "description": "Java基础编程课程"
+}
+
+### 教师端-新增课程资料
+POST http://localhost:22222/api/course-material/add
+Content-Type: application/json
+
+{
+  "course": {"id": 2},
+  "title": "Java基础教材",
+  "type": "教材",
+  "url": "http://example.com/java.pdf",
+  "description": "Java程序设计教材第三版"
+}
+
+### 教师端-修改课程资料
+PUT http://localhost:22222/api/course-material/update
+Content-Type: application/json
+
+{
+  "id": 5,
+  "course": {"id": 2},
+  "title": "Java基础教材（修改）",
+  "type": "教材",
+  "url": "http://example.com/java2.pdf",
+  "description": "Java程序设计教材第四版"
+}
+
+### 教师端-删除课程资料
+DELETE http://localhost:22222/api/course-material/delete/1
+
+### ==========================================
+### 选课管理 CourseSelectionController
+### ==========================================
+
+### 学生端-查看自己的选课记录（把1替换成实际studentId）
+GET http://localhost:22222/api/course-selection/my-list?studentId=1
+
+### 学生端-选课
+POST http://localhost:22222/api/course-selection/add
+Content-Type: application/json
+
+{
+  "course": {"id": 1},
+  "student": {"id": 1},
+  "status": "已选",
+  "selectTime": "2024-09-01"
+}
+
+### 学生端-退课（把1替换成实际id）
+DELETE http://localhost:22222/api/course-selection/delete/1
+
+### 教师端-查看所有选课记录
+GET http://localhost:22222/api/course-selection/all
+
+### 教师端-查看某门课的选课名单
+GET http://localhost:22222/api/course-selection/list/1
+
+### ==========================================
+### 考勤管理 AttendanceController
+### ==========================================
+
+### 学生端-查看自己的考勤记录
+GET http://localhost:22222/api/attendance/my-list?studentId=1
+
+### 学生端-查看自己某门课的考勤记录
+GET http://localhost:22222/api/attendance/my-course-list?studentId=1&courseId=1
+
+### 教师端-查看所有考勤记录
+GET http://localhost:22222/api/attendance/all
+
+### 教师端-查看某门课的考勤记录
+GET http://localhost:22222/api/attendance/list/1
+
+### 教师端-新增考勤记录
+POST http://localhost:22222/api/attendance/add
+Content-Type: application/json
+
+{
+  "course": {"id": 2},
+  "student": {"id": 1},
+  "attendanceDate": "2024-09-01",
+  "status": "出勤",
+  "remark": ""
+}
+
+### 教师端-修改考勤记录
+PUT http://localhost:22222/api/attendance/update
+Content-Type: application/json
+
+{
+  "id": 2,
+  "course": {"id": 2},
+  "student": {"id": 1},
+  "attendanceDate": "2024-09-01",
+  "status": "迟到",
+  "remark": "迟到10分钟"
+}
+
+### 教师端-删除考勤记录
+DELETE http://localhost:22222/api/attendance/delete/1
+
+### ==========================================
+### 作业管理 AssignmentController
+### ==========================================
+
+### 学生端-查看某门课的作业
+GET http://localhost:22222/api/assignment/list/1
+
+### 教师端-查看所有作业
+GET http://localhost:22222/api/assignment/all
+
+### 教师端-新增作业
+POST http://localhost:22222/api/assignment/add
+Content-Type: application/json
+
+{
+  "course": {"id": 2},
+  "title": "第一次作业",
+  "description": "完成课后习题1-10题",
+  "deadline": "2024-09-15",
+  "totalScore": "100"
+}
+
+### 教师端-修改作业
+PUT http://localhost:22222/api/assignment/update
+Content-Type: application/json
+
+{
+  "id": 2,
+  "course": {"id": 2},
+  "title": "第一次作业（修改）",
+  "description": "完成课后习题1-15题",
+  "deadline": "2024-09-20",
+  "totalScore": "100"
+}
+
+### 教师端-删除作业
+DELETE http://localhost:22222/api/assignment/delete/1
+
+### ==========================================
+### 作业提交 AssignmentSubmissionController
+### ==========================================
+
+### 学生端-查看自己的作业提交记录
+GET http://localhost:22222/api/assignment-submission/my-list?studentId=1
+
+### 学生端-提交作业
+POST http://localhost:22222/api/assignment-submission/add
+Content-Type: application/json
+
+{
+  "assignment": {"id": 2},
+  "student": {"id": 1},
+  "content": "作业答案内容",
+  "submitTime": "2024-09-10",
+  "status": "已提交"
+}
+
+### 学生端-修改提交的作业
+PUT http://localhost:22222/api/assignment-submission/update
+Content-Type: application/json
+
+{
+  "id": 2,
+  "assignment": {"id": 2},
+  "student": {"id": 1},
+  "content": "修改后的作业答案",
+  "submitTime": "2024-09-11",
+  "status": "已提交"
+}
+
+### 教师端-查看某个作业的所有提交
+GET http://localhost:22222/api/assignment-submission/list/1
+
+### 教师端-打分
+PUT http://localhost:22222/api/assignment-submission/grade
+Content-Type: application/json
+
+{
+  "id": 2,
+  "score": "95",
+  "feedback": "完成得很好，逻辑清晰",
+  "status": "已批改"
+}
+
+### 教师端-删除提交记录
+DELETE http://localhost:22222/api/assignment-submission/delete/1
+
+### ==========================================
+### 🏆 学科竞赛 CompetitionController
+### ==========================================
+
+### 学生端-查看我的竞赛记录（把1替换成实际studentId）
+GET http://localhost:22222/api/competition/my-list
+Content-Type: application/json
+
+1
+
+### 学生端-新增竞赛
+POST http://localhost:22222/api/competition/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "competitionName": "全国大学生数学建模竞赛",
+  "level": "国家级",
+  "award": "一等奖",
+  "awardDate": "2024-09-15",
+  "organizer": "教育部高等学校数学类专业教学指导委员会",
+  "description": "团队参赛，负责模型构建与算法实现"
+}
+
+### 学生端-删除竞赛（把1替换成实际id）
+DELETE http://localhost:22222/api/competition/delete/1
+
+### 教师端-查看所有待审批竞赛
+GET http://localhost:22222/api/competition/pending-list
+
+### 教师端-审批竞赛（把1替换成实际id）
+PUT http://localhost:22222/api/competition/approve/1?status=APPROVED&comment=获奖证书已核实，通过
+
+### ==========================================
+### 🔬 科技成果 ScienceAchievementController
+### ==========================================
+
+### 学生端-查看我的科技成果
+GET http://localhost:22222/api/science-achievement/my-list
+Content-Type: application/json
+
+1
+
+### 学生端-新增科技成果
+POST http://localhost:22222/api/science-achievement/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "achievementName": "基于深度学习的图像识别算法研究",
+  "type": "论文",
+  "publishDate": "2024-08-20",
+  "publisher": "计算机学报",
+  "description": "提出了一种改进的CNN模型，识别率达到98.5%"
+}
+
+### 学生端-删除科技成果（把1替换成实际id）
+DELETE http://localhost:22222/api/science-achievement/delete/1
+
+### 教师端-查看所有待审批科技成果
+GET http://localhost:22222/api/science-achievement/pending-list
+
+### 教师端-审批科技成果（把1替换成实际id）
+PUT http://localhost:22222/api/science-achievement/approve/1?status=APPROVED&comment=论文已见刊，通过
+
+### ==========================================
+### 🏢 校外实习 InternshipController
+### ==========================================
+
+### 学生端-查看我的实习记录
+GET http://localhost:22222/api/internship/my-list
+Content-Type: application/json
+
+1
+
+### 学生端-新增实习
+POST http://localhost:22222/api/internship/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "companyName": "阿里巴巴（中国）有限公司",
+  "position": "Java后端开发实习生",
+  "startDate": "2024-07-01",
+  "endDate": "2024-09-01",
+  "location": "杭州",
+  "description": "参与电商平台订单系统微服务开发，使用Spring Cloud技术栈"
+}
+
+### 学生端-删除实习（把1替换成实际id）
+DELETE http://localhost:22222/api/internship/delete/1
+
+### 教师端-查看所有待审批实习
+GET http://localhost:22222/api/internship/pending-list
+
+### 教师端-审批实习（把1替换成实际id）
+PUT http://localhost:22222/api/internship/approve/1?status=APPROVED&comment=实习证明已核实，通过
+
+### ==========================================
+### 💡 创新项目 InnovationProjectController
+### ==========================================
+
+### 学生端-查看我的创新项目
+GET http://localhost:22222/api/innovation-project/my-list
+Content-Type: application/json
+
+1
+
+### 学生端-新增创新项目
+POST http://localhost:22222/api/innovation-project/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "projectName": "智能校园导航系统",
+  "level": "省级",
+  "role": "负责人",
+  "startDate": "2024-03-01",
+  "endDate": "2025-03-01",
+  "projectStatus": "进行中",
+  "description": "基于AR技术的校园室内导航APP，获省级大创项目立项"
+}
+
+### 学生端-更新项目进度（把1替换成实际id）
+PUT http://localhost:22222/api/innovation-project/update-status/1?projectStatus=已结题
+
+### 学生端-删除创新项目（把1替换成实际id）
+DELETE http://localhost:22222/api/innovation-project/delete/1
+
+### 教师端-查看所有待审批创新项目
+GET http://localhost:22222/api/innovation-project/pending-list
+
+### 教师端-审批创新项目（把1替换成实际id）
+PUT http://localhost:22222/api/innovation-project/approve/1?status=APPROVED&comment=项目材料齐全，通过
+
+### ==========================================
+### 📚 培训讲座 TrainingLectureController
+### ==========================================
+
+### 学生端-查看我的培训讲座
+GET http://localhost:22222/api/training-lecture/my-list
+Content-Type: application/json
+
+1
+
+### 学生端-新增培训讲座
+POST http://localhost:22222/api/training-lecture/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "trainingName": "Spring Cloud微服务架构实战培训",
+  "organizer": "计算机学院",
+  "lectureDate": "2024-10-10",
+  "location": "科技楼A座301",
+  "description": "为期3天的微服务架构培训，涵盖服务注册、配置中心、网关等"
+}
+
+### 学生端-删除培训讲座（把1替换成实际id）
+DELETE http://localhost:22222/api/training-lecture/delete/1
+
+### 教师端-查看所有待审批培训讲座
+GET http://localhost:22222/api/training-lecture/pending-list
+
+### 教师端-审批培训讲座（把1替换成实际id）
+PUT http://localhost:22222/api/training-lecture/approve/1?status=APPROVED&comment=培训签到记录已核实，通过
+
+### ==========================================
+### 🌍 社会实践 SocialPracticeController
+### ==========================================
+
+### 学生端-查看我的社会实践
+GET http://localhost:22222/api/social-practice/my-list
+Content-Type: application/json
+
+1
+
+### 学生端-新增社会实践
+POST http://localhost:22222/api/social-practice/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "practiceName": "暑期三下乡社会实践活动",
+  "location": "山东省临沂市沂水县",
+  "startDate": "2024-07-15",
+  "endDate": "2024-07-30",
+  "role": "队长",
+  "description": "带领团队赴沂蒙老区开展乡村振兴调研与志愿服务"
+}
+
+### 学生端-删除社会实践（把1替换成实际id）
+DELETE http://localhost:22222/api/social-practice/delete/1
+
+### 教师端-查看所有待审批社会实践
+GET http://localhost:22222/api/social-practice/pending-list
+
+### 教师端-审批社会实践（把1替换成实际id）
+PUT http://localhost:22222/api/social-practice/approve/1?status=APPROVED&comment=实践报告内容详实，通过
+
+### ==========================================
+### 🔐 角色权限管理 AdminController（需要 ADMIN Session）
+### ==========================================
+
+### 管理员登录（获取 Session，Cookie 会自动带在后续请求中）
+POST http://localhost:22222/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123456",
+  "role": "ADMIN"
+}
+
+### 查看当前登录用户信息
+GET http://localhost:22222/api/auth/current-user
+
+### 管理员-查看所有用户
+GET http://localhost:22222/api/admin/users
+
+### 管理员-按角色筛选用户（STUDENT / TEACHER / ADMIN）
+GET http://localhost:22222/api/admin/users/role/STUDENT
+
+### 管理员-新增用户
+POST http://localhost:22222/api/admin/users
+Content-Type: application/json
+
+{
+  "username": "student_new",
+  "password": "123456",
+  "role": "STUDENT",
+  "person": {"id": 2}
+}
+
+### 管理员-重置用户密码（把1替换成实际userId）
+PUT http://localhost:22222/api/admin/users/1/reset-password
+Content-Type: application/json
+
+{
+  "newPassword": "new_password_456"
+}
+
+### 管理员-删除用户（把1替换成实际userId）
+DELETE http://localhost:22222/api/admin/users/1
+
+### 退出登录
+POST http://localhost:22222/api/auth/logout
+
+### ==========================================
+### 🏃 日常活动 DailyActivityController
+### ==========================================
+
+### 学生端-查看我的日常活动
+GET http://localhost:22222/api/daily-activity/my-list
+Content-Type: application/json
+
+1
+
+### 学生端-新增日常活动（体育类）
+POST http://localhost:22222/api/daily-activity/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "activityName": "班级篮球友谊赛",
+  "type": "体育",
+  "activityDate": "2024-10-15",
+  "location": "学校篮球场",
+  "role": "参与者",
+  "duration": "2",
+  "description": "与2班进行的友谊比赛"
+}
+
+### 学生端-新增日常活动（文艺类）
+POST http://localhost:22222/api/daily-activity/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "activityName": "元旦联欢晚会",
+  "type": "文艺",
+  "activityDate": "2024-12-30",
+  "location": "大学生活动中心",
+  "role": "组织者",
+  "duration": "3",
+  "description": "负责节目编排和现场布置"
+}
+
+### 学生端-删除日常活动（把1替换成实际id）
+DELETE http://localhost:22222/api/daily-activity/delete/1
+
+### ==========================================
+### 📝 日志信息 DailyLogController（仅学生端）
+### ==========================================
+
+### 学生端-查看我的所有日志
+GET http://localhost:22222/api/daily-log/my-list
+Content-Type: application/json
+
+1
+
+### 学生端-按类型筛选日志（消费/学习/生活/其他）
+GET http://localhost:22222/api/daily-log/my-list/type/学习
+Content-Type: application/json
+
+1
+
+### 学生端-新增日志（学习类）
+POST http://localhost:22222/api/daily-log/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "title": "今日学习Java",
+  "type": "学习",
+  "logDate": "2024-10-20",
+  "content": "学习了Spring Boot框架的基础知识，完成了第一个Demo项目",
+  "mood": "开心",
+  "tags": "学习,Java,SpringBoot"
+}
+
+### 学生端-新增日志（消费类）
+POST http://localhost:22222/api/daily-log/add
+Content-Type: application/json
+
+{
+  "student": {"id": 1},
+  "title": "今日消费记录",
+  "type": "消费",
+  "logDate": "2024-10-21",
+  "content": "早餐5元，午餐12元，晚餐8元，购买教材35元",
+  "mood": "一般",
+  "tags": "消费,餐费,教材"
+}
+
+### 学生端-修改日志（把id替换成实际id）
+PUT http://localhost:22222/api/daily-log/update
+Content-Type: application/json
+
+{
+  "id": 1,
+  "student": {"id": 1},
+  "title": "今日学习Java（修改）",
+  "type": "学习",
+  "logDate": "2024-10-20",
+  "content": "修改后的内容",
+  "mood": "开心",
+  "tags": "学习,Java"
+}
+
+### 学生端-删除日志（把1替换成实际id）
+DELETE http://localhost:22222/api/daily-log/delete/1
+
+### ==========================================
+### 📊 数据统计 StatisticsController
+### ==========================================
+
+### 学生端-查看我的数据仪表盘（把1替换成实际studentId）
+GET http://localhost:22222/api/statistics/my-dashboard
+Content-Type: application/json
+
+1
+
+### 教师/管理员-查看系统总览
+GET http://localhost:22222/api/statistics/overview

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.stumanage.fx.controller.StudentDashboardController">
+
+    <!-- 顶部导航栏 -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="20">
+            <Label text="🏫 学生综合管理系统" styleClass="top-bar-title"/>
+            <Label fx:id="welcomeLabel" text="欢迎，同学" styleClass="top-bar-subtitle"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userInfoLabel" text="" styleClass="top-bar-user"/>
+            <Button text="退出登录" styleClass="logout-btn" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <!-- 左侧边栏 — 全模块 -->
+    <left>
+        <ScrollPane fitToWidth="true" style="-fx-background-color:white; -fx-min-width:200;">
+            <VBox styleClass="sidebar">
+                <Label text="📋 功能菜单" styleClass="sidebar-header"/>
+
+                <Button text="🏠 仪表盘" styleClass="sidebar-btn" onAction="#showDashboard"/>
+
+                <Label text="📌 基础信息" styleClass="sidebar-header"/>
+                <Button text="  个人信息"     styleClass="sidebar-btn" onAction="#showModule" userData="person"/>
+                <Button text="  家庭信息"     styleClass="sidebar-btn" onAction="#showModule" userData="family"/>
+                <Button text="  入学前信息"   styleClass="sidebar-btn" onAction="#showModule" userData="pre-enrollment"/>
+                <Button text="  社会关系"     styleClass="sidebar-btn" onAction="#showModule" userData="social-relation"/>
+
+                <Label text="🏅 奖惩与出入" styleClass="sidebar-header"/>
+                <Button text="  荣誉"         styleClass="sidebar-btn" onAction="#showModule" userData="honor"/>
+                <Button text="  学科竞赛"     styleClass="sidebar-btn" onAction="#showModule" userData="competition"/>
+                <Button text="  科技成果"     styleClass="sidebar-btn" onAction="#showModule" userData="science-achievement"/>
+                <Button text="  出入校申请"   styleClass="sidebar-btn" onAction="#showModule" userData="access"/>
+                <Button text="  校外实习"     styleClass="sidebar-btn" onAction="#showModule" userData="internship"/>
+                <Button text="  社会实践"     styleClass="sidebar-btn" onAction="#showModule" userData="social-practice"/>
+
+                <Label text="💡 项目与培训" styleClass="sidebar-header"/>
+                <Button text="  创新项目"     styleClass="sidebar-btn" onAction="#showModule" userData="innovation-project"/>
+                <Button text="  培训讲座"     styleClass="sidebar-btn" onAction="#showModule" userData="training-lecture"/>
+
+                <Label text="📖 教学教务" styleClass="sidebar-header"/>
+                <Button text="  课程"         styleClass="sidebar-btn" onAction="#showModule" userData="course"/>
+                <Button text="  选课"         styleClass="sidebar-btn" onAction="#showModule" userData="course-selection"/>
+                <Button text="  考勤"         styleClass="sidebar-btn" onAction="#showModule" userData="attendance"/>
+                <Button text="  作业"         styleClass="sidebar-btn" onAction="#showModule" userData="assignment"/>
+
+                <Label text="🎯 校园生活" styleClass="sidebar-header"/>
+                <Button text="  日常活动"     styleClass="sidebar-btn" onAction="#showModule" userData="daily-activity"/>
+                <Button text="  日志记录"     styleClass="sidebar-btn" onAction="#showModule" userData="daily-log"/>
+
+                <Label text="📊 数据" styleClass="sidebar-header"/>
+                <Button text="  我的统计"     styleClass="sidebar-btn" onAction="#showStatistics"/>
+            </VBox>
+        </ScrollPane>
+    </left>
+
+    <!-- 主内容区 -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: #f0f2f5;">
+            <VBox fx:id="contentArea" styleClass="main-content"/>
+        </ScrollPane>
+    </center>
+</BorderPane>
